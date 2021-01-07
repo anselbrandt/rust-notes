@@ -1,0 +1,6 @@
+[book]
+authors = ["anselbrandt"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Rust Notes"
