@@ -1,3 +1,7 @@
+# Rust Notes
+
+This repo contains the pre-built static files of the markdown source. It can be deployed or served without building.
+
 ## Requirements
 
 Building the book requires [mdBook]:

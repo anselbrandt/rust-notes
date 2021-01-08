@@ -1,5 +1,6 @@
 # Summary
 
+- [Intro](./chapter_0.md)
 - [Guessing Game](./chapter_1.md)
 - [Variables and Mutability](./chapter_2.md)
 - [Types](./chapter_3.md)
