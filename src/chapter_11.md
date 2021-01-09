@@ -1,6 +1,6 @@
-## Enums and Pattern Matching
+## Enumerations
 
-#### Defining Enumerations
+#### Defining Enums
 
 ```rust,ignore
 enum IpAddrKind {
@@ -105,3 +105,5 @@ If a variable is initialized with `None` a type needs to be specified in the gen
 ```
 
 #### \*`Option<T>` must be converted to `T` before performing `T` operations with it.
+
+(see next section)

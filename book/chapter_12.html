@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Chapter 12 - Rust Notes</title>
+        <title>match - Rust Notes</title>
         
         
 
@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_0.html"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">2.</strong> Guessing Game</a></li><li class="chapter-item expanded "><a href="chapter_2.html"><strong aria-hidden="true">3.</strong> Variables and Mutability</a></li><li class="chapter-item expanded "><a href="chapter_3.html"><strong aria-hidden="true">4.</strong> Types</a></li><li class="chapter-item expanded "><a href="chapter_4.html"><strong aria-hidden="true">5.</strong> Functions</a></li><li class="chapter-item expanded "><a href="chapter_5.html"><strong aria-hidden="true">6.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="chapter_6.html"><strong aria-hidden="true">7.</strong> Ownership</a></li><li class="chapter-item expanded "><a href="chapter_7.html"><strong aria-hidden="true">8.</strong> References and Borrowing</a></li><li class="chapter-item expanded "><a href="chapter_8.html"><strong aria-hidden="true">9.</strong> Slice Type</a></li><li class="chapter-item expanded "><a href="chapter_9.html"><strong aria-hidden="true">10.</strong> Structs</a></li><li class="chapter-item expanded "><a href="chapter_10.html"><strong aria-hidden="true">11.</strong> Methods</a></li><li class="chapter-item expanded "><a href="chapter_11.html"><strong aria-hidden="true">12.</strong> Enums and Pattern Matching</a></li><li class="chapter-item expanded "><a href="chapter_12.html" class="active"><strong aria-hidden="true">13.</strong> Chapter 12</a></li><li class="chapter-item expanded "><a href="chapter_13.html"><strong aria-hidden="true">14.</strong> Chapter 13</a></li><li class="chapter-item expanded "><a href="chapter_14.html"><strong aria-hidden="true">15.</strong> Chapter 14</a></li><li class="chapter-item expanded "><a href="chapter_15.html"><strong aria-hidden="true">16.</strong> Chapter 15</a></li><li class="chapter-item expanded "><a href="chapter_16.html"><strong aria-hidden="true">17.</strong> Chapter 16</a></li><li class="chapter-item expanded "><a href="chapter_17.html"><strong aria-hidden="true">18.</strong> Chapter 17</a></li><li class="chapter-item expanded "><a href="chapter_18.html"><strong aria-hidden="true">19.</strong> Chapter 18</a></li><li class="chapter-item expanded "><a href="chapter_19.html"><strong aria-hidden="true">20.</strong> Chapter 19</a></li><li class="chapter-item expanded "><a href="chapter_20.html"><strong aria-hidden="true">21.</strong> Chapter 20</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_0.html"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">2.</strong> Guessing Game</a></li><li class="chapter-item expanded "><a href="chapter_2.html"><strong aria-hidden="true">3.</strong> Variables and Mutability</a></li><li class="chapter-item expanded "><a href="chapter_3.html"><strong aria-hidden="true">4.</strong> Types</a></li><li class="chapter-item expanded "><a href="chapter_4.html"><strong aria-hidden="true">5.</strong> Functions</a></li><li class="chapter-item expanded "><a href="chapter_5.html"><strong aria-hidden="true">6.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="chapter_6.html"><strong aria-hidden="true">7.</strong> Ownership</a></li><li class="chapter-item expanded "><a href="chapter_7.html"><strong aria-hidden="true">8.</strong> References and Borrowing</a></li><li class="chapter-item expanded "><a href="chapter_8.html"><strong aria-hidden="true">9.</strong> Slice Type</a></li><li class="chapter-item expanded "><a href="chapter_9.html"><strong aria-hidden="true">10.</strong> Structs</a></li><li class="chapter-item expanded "><a href="chapter_10.html"><strong aria-hidden="true">11.</strong> Methods</a></li><li class="chapter-item expanded "><a href="chapter_11.html"><strong aria-hidden="true">12.</strong> Enums</a></li><li class="chapter-item expanded "><a href="chapter_12.html" class="active"><strong aria-hidden="true">13.</strong> match</a></li><li class="chapter-item expanded "><a href="chapter_13.html"><strong aria-hidden="true">14.</strong> if let</a></li><li class="chapter-item expanded "><a href="chapter_14.html"><strong aria-hidden="true">15.</strong> Packages, Crates and Modules</a></li><li class="chapter-item expanded "><a href="chapter_15.html"><strong aria-hidden="true">16.</strong> use</a></li><li class="chapter-item expanded "><a href="chapter_16.html"><strong aria-hidden="true">17.</strong> Chapter 16</a></li><li class="chapter-item expanded "><a href="chapter_17.html"><strong aria-hidden="true">18.</strong> Chapter 17</a></li><li class="chapter-item expanded "><a href="chapter_18.html"><strong aria-hidden="true">19.</strong> Chapter 18</a></li><li class="chapter-item expanded "><a href="chapter_19.html"><strong aria-hidden="true">20.</strong> Chapter 19</a></li><li class="chapter-item expanded "><a href="chapter_20.html"><strong aria-hidden="true">21.</strong> Chapter 20</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -163,7 +163,76 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#chapter-12" id="chapter-12">Chapter 12</a></h1>
+                        <h2><a class="header" href="#match-control-flow-operator" id="match-control-flow-operator"><code>match</code> Control Flow Operator</a></h2>
+<pre><code class="language-rust ignore">fn value_in_cents(coin: Coin) -&gt; u8 {
+    match coin {
+        Coin::Penny =&gt; {
+            println!(&quot;Lucky penny!&quot;);
+            1
+        }
+        Coin::Nickel =&gt; 5,
+        Coin::Dime =&gt; 10,
+        Coin::Quarter =&gt; 25,
+    }
+}
+</code></pre>
+<h4><a class="header" href="#patterns-that-bind-to-values" id="patterns-that-bind-to-values">Patterns that Bind to Values</a></h4>
+<pre><code class="language-rust ignore">#[derive(Debug)] // so we can inspect the state in a minute
+enum UsState {
+    Alabama,
+    Alaska,
+    // --snip--
+}
+
+enum Coin {
+    Penny,
+    Nickel,
+    Dime,
+    Quarter(UsState),
+}
+</code></pre>
+<pre><code class="language-rust ignore">fn value_in_cents(coin: Coin) -&gt; u8 {
+    match coin {
+        Coin::Penny =&gt; 1,
+        Coin::Nickel =&gt; 5,
+        Coin::Dime =&gt; 10,
+        Coin::Quarter(state) =&gt; {
+            println!(&quot;State quarter from {:?}!&quot;, state);
+            25
+        }
+    }
+}
+</code></pre>
+<p>If we call <code>value_in_cents(Coin::Quarter(UsState::Alaska))</code> the binding for <code>state</code> will be the value <code>UsState::Alaska</code></p>
+<h4><a class="header" href="#matching-with-optiont" id="matching-with-optiont">Matching with Option&lt;T&gt;</a></h4>
+<pre><code class="language-rust ignore">    fn plus_one(x: Option&lt;i32&gt;) -&gt; Option&lt;i32&gt; {
+        match x {
+            None =&gt; None,
+            Some(i) =&gt; Some(i + 1),
+        }
+    }
+
+    let five = Some(5);
+    let six = plus_one(five);
+    let none = plus_one(None);
+</code></pre>
+<p>Combining <code>match</code> and enums is a common pattern in Rust:</p>
+<ol>
+<li><code>match</code> against an enum</li>
+<li>bind a variable to the data inside</li>
+<li>execute code execute code based on it</li>
+</ol>
+<h4><a class="header" href="#the-_-placeholder" id="the-_-placeholder">The _ Placeholder</a></h4>
+<pre><code class="language-rust ignore">    let some_u8_value = 0u8;
+    match some_u8_value {
+        1 =&gt; println!(&quot;one&quot;),
+        3 =&gt; println!(&quot;three&quot;),
+        5 =&gt; println!(&quot;five&quot;),
+        7 =&gt; println!(&quot;seven&quot;),
+        _ =&gt; (),
+    }
+</code></pre>
+<p>As matches are exhaustive, the <code>_</code> pattern will match all cases not specified.</p>
 
                     </main>
 

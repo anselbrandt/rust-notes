@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Chapter 14 - Rust Notes</title>
+        <title>Packages, Crates and Modules - Rust Notes</title>
         
         
 
@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_0.html"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">2.</strong> Guessing Game</a></li><li class="chapter-item expanded "><a href="chapter_2.html"><strong aria-hidden="true">3.</strong> Variables and Mutability</a></li><li class="chapter-item expanded "><a href="chapter_3.html"><strong aria-hidden="true">4.</strong> Types</a></li><li class="chapter-item expanded "><a href="chapter_4.html"><strong aria-hidden="true">5.</strong> Functions</a></li><li class="chapter-item expanded "><a href="chapter_5.html"><strong aria-hidden="true">6.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="chapter_6.html"><strong aria-hidden="true">7.</strong> Ownership</a></li><li class="chapter-item expanded "><a href="chapter_7.html"><strong aria-hidden="true">8.</strong> References and Borrowing</a></li><li class="chapter-item expanded "><a href="chapter_8.html"><strong aria-hidden="true">9.</strong> Slice Type</a></li><li class="chapter-item expanded "><a href="chapter_9.html"><strong aria-hidden="true">10.</strong> Structs</a></li><li class="chapter-item expanded "><a href="chapter_10.html"><strong aria-hidden="true">11.</strong> Methods</a></li><li class="chapter-item expanded "><a href="chapter_11.html"><strong aria-hidden="true">12.</strong> Enums and Pattern Matching</a></li><li class="chapter-item expanded "><a href="chapter_12.html"><strong aria-hidden="true">13.</strong> Chapter 12</a></li><li class="chapter-item expanded "><a href="chapter_13.html"><strong aria-hidden="true">14.</strong> Chapter 13</a></li><li class="chapter-item expanded "><a href="chapter_14.html" class="active"><strong aria-hidden="true">15.</strong> Chapter 14</a></li><li class="chapter-item expanded "><a href="chapter_15.html"><strong aria-hidden="true">16.</strong> Chapter 15</a></li><li class="chapter-item expanded "><a href="chapter_16.html"><strong aria-hidden="true">17.</strong> Chapter 16</a></li><li class="chapter-item expanded "><a href="chapter_17.html"><strong aria-hidden="true">18.</strong> Chapter 17</a></li><li class="chapter-item expanded "><a href="chapter_18.html"><strong aria-hidden="true">19.</strong> Chapter 18</a></li><li class="chapter-item expanded "><a href="chapter_19.html"><strong aria-hidden="true">20.</strong> Chapter 19</a></li><li class="chapter-item expanded "><a href="chapter_20.html"><strong aria-hidden="true">21.</strong> Chapter 20</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_0.html"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">2.</strong> Guessing Game</a></li><li class="chapter-item expanded "><a href="chapter_2.html"><strong aria-hidden="true">3.</strong> Variables and Mutability</a></li><li class="chapter-item expanded "><a href="chapter_3.html"><strong aria-hidden="true">4.</strong> Types</a></li><li class="chapter-item expanded "><a href="chapter_4.html"><strong aria-hidden="true">5.</strong> Functions</a></li><li class="chapter-item expanded "><a href="chapter_5.html"><strong aria-hidden="true">6.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="chapter_6.html"><strong aria-hidden="true">7.</strong> Ownership</a></li><li class="chapter-item expanded "><a href="chapter_7.html"><strong aria-hidden="true">8.</strong> References and Borrowing</a></li><li class="chapter-item expanded "><a href="chapter_8.html"><strong aria-hidden="true">9.</strong> Slice Type</a></li><li class="chapter-item expanded "><a href="chapter_9.html"><strong aria-hidden="true">10.</strong> Structs</a></li><li class="chapter-item expanded "><a href="chapter_10.html"><strong aria-hidden="true">11.</strong> Methods</a></li><li class="chapter-item expanded "><a href="chapter_11.html"><strong aria-hidden="true">12.</strong> Enums</a></li><li class="chapter-item expanded "><a href="chapter_12.html"><strong aria-hidden="true">13.</strong> match</a></li><li class="chapter-item expanded "><a href="chapter_13.html"><strong aria-hidden="true">14.</strong> if let</a></li><li class="chapter-item expanded "><a href="chapter_14.html" class="active"><strong aria-hidden="true">15.</strong> Packages, Crates and Modules</a></li><li class="chapter-item expanded "><a href="chapter_15.html"><strong aria-hidden="true">16.</strong> use</a></li><li class="chapter-item expanded "><a href="chapter_16.html"><strong aria-hidden="true">17.</strong> Chapter 16</a></li><li class="chapter-item expanded "><a href="chapter_17.html"><strong aria-hidden="true">18.</strong> Chapter 17</a></li><li class="chapter-item expanded "><a href="chapter_18.html"><strong aria-hidden="true">19.</strong> Chapter 18</a></li><li class="chapter-item expanded "><a href="chapter_19.html"><strong aria-hidden="true">20.</strong> Chapter 19</a></li><li class="chapter-item expanded "><a href="chapter_20.html"><strong aria-hidden="true">21.</strong> Chapter 20</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -163,7 +163,100 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#chapter-14" id="chapter-14">Chapter 14</a></h1>
+                        <h2><a class="header" href="#packages-crates-and-modules" id="packages-crates-and-modules">Packages, Crates and Modules</a></h2>
+<ul>
+<li><strong>Packages:</strong> A Cargo feature that lets you build, test, and share crates</li>
+<li><strong>Crates:</strong> A tree of modules that produces a library or executable</li>
+<li><strong>Modules</strong> and <strong>use:</strong> Let you control the organization, scope, and
+privacy of paths</li>
+<li><strong>Paths:</strong> A way of naming an item, such as a struct, function, or module</li>
+</ul>
+<h3><a class="header" href="#packages-and-crates" id="packages-and-crates">Packages and Crates</a></h3>
+<p>Crates are binary packages or library packages.</p>
+<p>Binary packages are created with <code>cargo new</code> and have <code>src/main.rs</code> as the crate root.</p>
+<p>Library crates are created with <code>cargo new --lib</code> and have <code> src/lib.rs</code> as the crate root.</p>
+<h3><a class="header" href="#modules" id="modules">Modules</a></h3>
+<p>src/lib.rs</p>
+<pre><code class="language-rust ignore">mod front_of_house {
+    mod hosting {
+        fn add_to_waitlist() {}
+
+        fn seat_at_table() {}
+    }
+
+    mod serving {
+        fn take_order() {}
+
+        fn serve_order() {}
+
+        fn take_payment() {}
+    }
+}
+</code></pre>
+<p>The crate's <em>module tree</em>:</p>
+<pre><code class="language-text">crate
+ └── front_of_house
+     ├── hosting
+     │   ├── add_to_waitlist
+     │   └── seat_at_table
+     └── serving
+         ├── take_order
+         ├── serve_order
+         └── take_payment
+</code></pre>
+<h3><a class="header" href="#paths" id="paths">Paths</a></h3>
+<ul>
+<li><em>absolute path</em> starts from a crate root by using a crate name or a
+literal <code>crate</code>.</li>
+<li><em>relative path</em> starts from the current module and uses <code>self</code>, <code>super</code>, or
+an identifier in the current module.</li>
+</ul>
+<pre><code class="language-rust ignore">mod front_of_house {
+    mod hosting {
+        pub fn add_to_waitlist() {}
+    }
+}
+
+pub fn eat_at_restaurant() {
+    // Absolute path
+    crate::front_of_house::hosting::add_to_waitlist();
+
+    // Relative path
+    front_of_house::hosting::add_to_waitlist();
+}
+</code></pre>
+<p>Prefer to specify absolute paths because it’s more likely to move code definitions and item calls independently of each other.</p>
+<h3><a class="header" href="#exposing-paths-with-pub-keyword" id="exposing-paths-with-pub-keyword">Exposing Paths with <code>pub</code> Keyword</a></h3>
+<p>Items in modules are private by default.</p>
+<p>The <code>pub</code> keyword on a module only lets code in its ancestor modules refer to it.</p>
+<h3><a class="header" href="#starting-relative-paths-with-super" id="starting-relative-paths-with-super">Starting Relative Paths with <code>super</code></a></h3>
+<p>Similar to filesystem <code>..</code>, wen can construct relative paths that begin in the parent module by using <code>super</code>.</p>
+<pre><code class="language-rust ignore">fn serve_order() {}
+
+mod back_of_house {
+    fn fix_incorrect_order() {
+        cook_order();
+        super::serve_order();
+    }
+
+    fn cook_order() {}
+}
+</code></pre>
+<h3><a class="header" href="#making-structs-and-enums-public" id="making-structs-and-enums-public">Making Structs and Enums Public</a></h3>
+<p>Fields in a <code>struct</code> are made public on a case-by-case basis.</p>
+<p>If an <code>enum</code> is made public, all its variants are then public.</p>
+<pre><code class="language-rust ignore">mod back_of_house {
+    pub struct Breakfast {
+        pub toast: String,
+        seasonal_fruit: String,
+    }
+
+    pub enum Appetizer {
+        Soup,
+        Salad,
+    }
+}
+</code></pre>
 
                     </main>
 
