@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_0.html"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">2.</strong> Guessing Game</a></li><li class="chapter-item expanded "><a href="chapter_2.html"><strong aria-hidden="true">3.</strong> Variables and Mutability</a></li><li class="chapter-item expanded "><a href="chapter_3.html"><strong aria-hidden="true">4.</strong> Types</a></li><li class="chapter-item expanded "><a href="chapter_4.html"><strong aria-hidden="true">5.</strong> Functions</a></li><li class="chapter-item expanded "><a href="chapter_5.html"><strong aria-hidden="true">6.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="chapter_6.html"><strong aria-hidden="true">7.</strong> Ownership</a></li><li class="chapter-item expanded "><a href="chapter_7.html"><strong aria-hidden="true">8.</strong> References and Borrowing</a></li><li class="chapter-item expanded "><a href="chapter_8.html"><strong aria-hidden="true">9.</strong> Slice Type</a></li><li class="chapter-item expanded "><a href="chapter_9.html"><strong aria-hidden="true">10.</strong> Structs</a></li><li class="chapter-item expanded "><a href="chapter_10.html" class="active"><strong aria-hidden="true">11.</strong> Methods</a></li><li class="chapter-item expanded "><a href="chapter_11.html"><strong aria-hidden="true">12.</strong> Chapter 11</a></li><li class="chapter-item expanded "><a href="chapter_12.html"><strong aria-hidden="true">13.</strong> Chapter 12</a></li><li class="chapter-item expanded "><a href="chapter_13.html"><strong aria-hidden="true">14.</strong> Chapter 13</a></li><li class="chapter-item expanded "><a href="chapter_14.html"><strong aria-hidden="true">15.</strong> Chapter 14</a></li><li class="chapter-item expanded "><a href="chapter_15.html"><strong aria-hidden="true">16.</strong> Chapter 15</a></li><li class="chapter-item expanded "><a href="chapter_16.html"><strong aria-hidden="true">17.</strong> Chapter 16</a></li><li class="chapter-item expanded "><a href="chapter_17.html"><strong aria-hidden="true">18.</strong> Chapter 17</a></li><li class="chapter-item expanded "><a href="chapter_18.html"><strong aria-hidden="true">19.</strong> Chapter 18</a></li><li class="chapter-item expanded "><a href="chapter_19.html"><strong aria-hidden="true">20.</strong> Chapter 19</a></li><li class="chapter-item expanded "><a href="chapter_20.html"><strong aria-hidden="true">21.</strong> Chapter 20</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_0.html"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">2.</strong> Guessing Game</a></li><li class="chapter-item expanded "><a href="chapter_2.html"><strong aria-hidden="true">3.</strong> Variables and Mutability</a></li><li class="chapter-item expanded "><a href="chapter_3.html"><strong aria-hidden="true">4.</strong> Types</a></li><li class="chapter-item expanded "><a href="chapter_4.html"><strong aria-hidden="true">5.</strong> Functions</a></li><li class="chapter-item expanded "><a href="chapter_5.html"><strong aria-hidden="true">6.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="chapter_6.html"><strong aria-hidden="true">7.</strong> Ownership</a></li><li class="chapter-item expanded "><a href="chapter_7.html"><strong aria-hidden="true">8.</strong> References and Borrowing</a></li><li class="chapter-item expanded "><a href="chapter_8.html"><strong aria-hidden="true">9.</strong> Slice Type</a></li><li class="chapter-item expanded "><a href="chapter_9.html"><strong aria-hidden="true">10.</strong> Structs</a></li><li class="chapter-item expanded "><a href="chapter_10.html" class="active"><strong aria-hidden="true">11.</strong> Methods</a></li><li class="chapter-item expanded "><a href="chapter_11.html"><strong aria-hidden="true">12.</strong> Enums and Pattern Matching</a></li><li class="chapter-item expanded "><a href="chapter_12.html"><strong aria-hidden="true">13.</strong> Chapter 12</a></li><li class="chapter-item expanded "><a href="chapter_13.html"><strong aria-hidden="true">14.</strong> Chapter 13</a></li><li class="chapter-item expanded "><a href="chapter_14.html"><strong aria-hidden="true">15.</strong> Chapter 14</a></li><li class="chapter-item expanded "><a href="chapter_15.html"><strong aria-hidden="true">16.</strong> Chapter 15</a></li><li class="chapter-item expanded "><a href="chapter_16.html"><strong aria-hidden="true">17.</strong> Chapter 16</a></li><li class="chapter-item expanded "><a href="chapter_17.html"><strong aria-hidden="true">18.</strong> Chapter 17</a></li><li class="chapter-item expanded "><a href="chapter_18.html"><strong aria-hidden="true">19.</strong> Chapter 18</a></li><li class="chapter-item expanded "><a href="chapter_19.html"><strong aria-hidden="true">20.</strong> Chapter 19</a></li><li class="chapter-item expanded "><a href="chapter_20.html"><strong aria-hidden="true">21.</strong> Chapter 20</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -164,6 +164,81 @@
                 <div id="content" class="content">
                     <main>
                         <h2><a class="header" href="#methods" id="methods">Methods</a></h2>
+<h3><a class="header" href="#defining-methods" id="defining-methods">Defining Methods</a></h3>
+<p>Methods are defined within <code>impl</code> blocks. Structs can have multiple <code>impl</code> blocks.</p>
+<pre><code class="language-rust ignore">struct Rectangle {
+    width: u32,
+    height: u32,
+}
+
+impl Rectangle {
+    fn area(&amp;self) -&gt; u32 {
+        self.width * self.height
+    }
+}
+
+fn main() {
+    let rect1 = Rectangle {
+        width: 30,
+        height: 50,
+    };
+
+    println!(
+        &quot;The area of the rectangle is {} square pixels.&quot;,
+        rect1.area()
+    );
+}
+</code></pre>
+<blockquote>
+<p>Rust uses <em>automatic referencing</em> and <em>dereferencing</em> when calling methods.
+When you call a method with <code>object.something()</code>, Rust automatically adds in <code>&amp;</code>, <code>&amp;mut</code>, or <code>*</code> so object matches the signature of the method.</p>
+<pre><code class="language-rust ignore">p1.distance(&amp;p2);
+(&amp;p1).distance(&amp;p2);
+</code></pre>
+<p>Automatic referencing works because methods have a clear receiver—the type of <em>self</em>. Given the receiver and name of a method, Rust can figure out definitively whether the method is reading (<em>&amp;self</em>), mutating (<em>&amp;mut self</em>), or consuming (<em>self</em>).</p>
+</blockquote>
+<h3><a class="header" href="#methods-with-more-parameters" id="methods-with-more-parameters">Methods with More Parameters</a></h3>
+<pre><code class="language-rust ignore">struct Rectangle {
+    width: u32,
+    height: u32,
+}
+
+impl Rectangle {
+    fn can_hold(&amp;self, other: &amp;Rectangle) -&gt; bool {
+        self.width &gt; other.width &amp;&amp; self.height &gt; other.height
+    }
+}
+
+fn main() {
+    let rect1 = Rectangle {
+        width: 30,
+        height: 50,
+    };
+    let rect2 = Rectangle {
+        width: 10,
+        height: 40,
+    };
+    let rect3 = Rectangle {
+        width: 60,
+        height: 45,
+    };
+
+    println!(&quot;Can rect1 hold rect2? {}&quot;, rect1.can_hold(&amp;rect2));
+    println!(&quot;Can rect1 hold rect3? {}&quot;, rect1.can_hold(&amp;rect3));
+}
+</code></pre>
+<h3><a class="header" href="#associated-functions" id="associated-functions">Associated Functions</a></h3>
+<p>Associated functions are often used for constructors that will return a new instance of the struct.</p>
+<pre><code class="language-rust ignore">impl Rectangle {
+    fn square(size: u32) -&gt; Rectangle {
+        Rectangle {
+            width: size,
+            height: size,
+        }
+    }
+}
+</code></pre>
+<p>The <code>square</code> function is namespaced by the struct and called with the <code>::</code> syntax: <code>let sq = Rectangle::square(3);</code></p>
 
                     </main>
 

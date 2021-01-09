@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Chapter 11 - Rust Notes</title>
+        <title>Enums and Pattern Matching - Rust Notes</title>
         
         
 
@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_0.html"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">2.</strong> Guessing Game</a></li><li class="chapter-item expanded "><a href="chapter_2.html"><strong aria-hidden="true">3.</strong> Variables and Mutability</a></li><li class="chapter-item expanded "><a href="chapter_3.html"><strong aria-hidden="true">4.</strong> Types</a></li><li class="chapter-item expanded "><a href="chapter_4.html"><strong aria-hidden="true">5.</strong> Functions</a></li><li class="chapter-item expanded "><a href="chapter_5.html"><strong aria-hidden="true">6.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="chapter_6.html"><strong aria-hidden="true">7.</strong> Ownership</a></li><li class="chapter-item expanded "><a href="chapter_7.html"><strong aria-hidden="true">8.</strong> References and Borrowing</a></li><li class="chapter-item expanded "><a href="chapter_8.html"><strong aria-hidden="true">9.</strong> Slice Type</a></li><li class="chapter-item expanded "><a href="chapter_9.html"><strong aria-hidden="true">10.</strong> Structs</a></li><li class="chapter-item expanded "><a href="chapter_10.html"><strong aria-hidden="true">11.</strong> Methods</a></li><li class="chapter-item expanded "><a href="chapter_11.html" class="active"><strong aria-hidden="true">12.</strong> Chapter 11</a></li><li class="chapter-item expanded "><a href="chapter_12.html"><strong aria-hidden="true">13.</strong> Chapter 12</a></li><li class="chapter-item expanded "><a href="chapter_13.html"><strong aria-hidden="true">14.</strong> Chapter 13</a></li><li class="chapter-item expanded "><a href="chapter_14.html"><strong aria-hidden="true">15.</strong> Chapter 14</a></li><li class="chapter-item expanded "><a href="chapter_15.html"><strong aria-hidden="true">16.</strong> Chapter 15</a></li><li class="chapter-item expanded "><a href="chapter_16.html"><strong aria-hidden="true">17.</strong> Chapter 16</a></li><li class="chapter-item expanded "><a href="chapter_17.html"><strong aria-hidden="true">18.</strong> Chapter 17</a></li><li class="chapter-item expanded "><a href="chapter_18.html"><strong aria-hidden="true">19.</strong> Chapter 18</a></li><li class="chapter-item expanded "><a href="chapter_19.html"><strong aria-hidden="true">20.</strong> Chapter 19</a></li><li class="chapter-item expanded "><a href="chapter_20.html"><strong aria-hidden="true">21.</strong> Chapter 20</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_0.html"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">2.</strong> Guessing Game</a></li><li class="chapter-item expanded "><a href="chapter_2.html"><strong aria-hidden="true">3.</strong> Variables and Mutability</a></li><li class="chapter-item expanded "><a href="chapter_3.html"><strong aria-hidden="true">4.</strong> Types</a></li><li class="chapter-item expanded "><a href="chapter_4.html"><strong aria-hidden="true">5.</strong> Functions</a></li><li class="chapter-item expanded "><a href="chapter_5.html"><strong aria-hidden="true">6.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="chapter_6.html"><strong aria-hidden="true">7.</strong> Ownership</a></li><li class="chapter-item expanded "><a href="chapter_7.html"><strong aria-hidden="true">8.</strong> References and Borrowing</a></li><li class="chapter-item expanded "><a href="chapter_8.html"><strong aria-hidden="true">9.</strong> Slice Type</a></li><li class="chapter-item expanded "><a href="chapter_9.html"><strong aria-hidden="true">10.</strong> Structs</a></li><li class="chapter-item expanded "><a href="chapter_10.html"><strong aria-hidden="true">11.</strong> Methods</a></li><li class="chapter-item expanded "><a href="chapter_11.html" class="active"><strong aria-hidden="true">12.</strong> Enums and Pattern Matching</a></li><li class="chapter-item expanded "><a href="chapter_12.html"><strong aria-hidden="true">13.</strong> Chapter 12</a></li><li class="chapter-item expanded "><a href="chapter_13.html"><strong aria-hidden="true">14.</strong> Chapter 13</a></li><li class="chapter-item expanded "><a href="chapter_14.html"><strong aria-hidden="true">15.</strong> Chapter 14</a></li><li class="chapter-item expanded "><a href="chapter_15.html"><strong aria-hidden="true">16.</strong> Chapter 15</a></li><li class="chapter-item expanded "><a href="chapter_16.html"><strong aria-hidden="true">17.</strong> Chapter 16</a></li><li class="chapter-item expanded "><a href="chapter_17.html"><strong aria-hidden="true">18.</strong> Chapter 17</a></li><li class="chapter-item expanded "><a href="chapter_18.html"><strong aria-hidden="true">19.</strong> Chapter 18</a></li><li class="chapter-item expanded "><a href="chapter_19.html"><strong aria-hidden="true">20.</strong> Chapter 19</a></li><li class="chapter-item expanded "><a href="chapter_20.html"><strong aria-hidden="true">21.</strong> Chapter 20</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -163,7 +163,83 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#chapter-11" id="chapter-11">Chapter 11</a></h1>
+                        <h2><a class="header" href="#enums-and-pattern-matching" id="enums-and-pattern-matching">Enums and Pattern Matching</a></h2>
+<h4><a class="header" href="#defining-enumerations" id="defining-enumerations">Defining Enumerations</a></h4>
+<pre><code class="language-rust ignore">enum IpAddrKind {
+    V4,
+    V6,
+}
+</code></pre>
+<p>Variations of enums are namespaced under their identifier.</p>
+<pre><code class="language-rust ignore"> let four = IpAddrKind::V4;
+ let six = IpAddrKind::V6;
+</code></pre>
+<h4><a class="header" href="#enum-associated-values" id="enum-associated-values">Enum Associated Values</a></h4>
+<pre><code class="language-rust ignore">    enum IpAddr {
+        V4(String),
+        V6(String),
+    }
+
+    let home = IpAddr::V4(String::from(&quot;127.0.0.1&quot;));
+
+    let loopback = IpAddr::V6(String::from(&quot;::1&quot;));
+</code></pre>
+<p>Enum variants can have different types and amounts of associated data.</p>
+<pre><code class="language-rust ignore">   enum IpAddr {
+        V4(u8, u8, u8, u8),
+        V6(String),
+    }
+
+    let home = IpAddr::V4(127, 0, 0, 1);
+
+    let loopback = IpAddr::V6(String::from(&quot;::1&quot;));
+</code></pre>
+<p>or</p>
+<pre><code class="language-rust ignore">enum Message {
+    Quit,
+    Move { x: i32, y: i32 },
+    Write(String),
+    ChangeColor(i32, i32, i32),
+}
+</code></pre>
+<ul>
+<li><code>Quit</code> has no data associated with it at all.</li>
+<li><code>Move</code> includes an anonymous struct inside it.</li>
+<li><code>Write</code> includes a single <code>String</code>.</li>
+<li><code>ChangeColor</code> includes three <code>i32</code> values.</li>
+</ul>
+<h4><a class="header" href="#methods-on-enums" id="methods-on-enums">Methods on Enums</a></h4>
+<pre><code class="language-rust ignore">    impl Message {
+        fn call(&amp;self) {
+            // method body would be defined here
+        }
+    }
+
+    let m = Message::Write(String::from(&quot;hello&quot;));
+    m.call();
+</code></pre>
+<h3><a class="header" href="#option-enum" id="option-enum">Option Enum</a></h3>
+<p>Rust does not have null, but has <code>Option</code> type, which can be something or nothing.</p>
+<p>It is defined by the standard library as follows:</p>
+<pre><code class="language-rust ignore">enum Option&lt;T&gt; {
+    Some(T),
+    None,
+}
+</code></pre>
+<p><code>Option&lt;T&gt;</code>, <code>Some</code> and <code>None</code> are included in the prelude and do not need to be brought into scope, and therefore do not require the <code>Option::</code> prefix.</p>
+<pre><code class="language-rust ignore">    let some_number = Some(5);
+    let some_string = Some(&quot;a string&quot;);
+
+    let absent_number: Option&lt;i32&gt; = None;
+</code></pre>
+<p>If a variable is initialized with <code>None</code> a type needs to be specified in the generic.</p>
+<h4><a class="header" href="#does-not-compile" id="does-not-compile">Does not compile:</a></h4>
+<pre><code class="language-rust ignore">    let x: i8 = 5;
+    let y: Option&lt;i8&gt; = Some(5);
+
+    let sum = x + y;
+</code></pre>
+<h4><a class="header" href="#optiont-must-be-converted-to-t-before-performing-t-operations-with-it" id="optiont-must-be-converted-to-t-before-performing-t-operations-with-it">*<code>Option&lt;T&gt;</code> must be converted to <code>T</code> before performing <code>T</code> operations with it.</a></h4>
 
                     </main>
 

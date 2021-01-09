@@ -11,7 +11,7 @@
 - [Slice Type](./chapter_8.md)
 - [Structs](./chapter_9.md)
 - [Methods](./chapter_10.md)
-- [Chapter 11](./chapter_11.md)
+- [Enums and Pattern Matching](./chapter_11.md)
 - [Chapter 12](./chapter_12.md)
 - [Chapter 13](./chapter_13.md)
 - [Chapter 14](./chapter_14.md)
