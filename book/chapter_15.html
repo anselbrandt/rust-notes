@@ -164,6 +164,79 @@
                 <div id="content" class="content">
                     <main>
                         <h2><a class="header" href="#bringing-paths-into-scope-with-use" id="bringing-paths-into-scope-with-use">Bringing Paths into Scope with <code>use</code></a></h2>
+<pre><code class="language-rust ignore">mod front_of_house {
+    pub mod hosting {
+        pub fn add_to_waitlist() {}
+    }
+}
+
+use crate::front_of_house::hosting;
+// or relative path:
+// use self::front_of_house::hosting;
+
+pub fn eat_at_restaurant() {
+    hosting::add_to_waitlist();
+    hosting::add_to_waitlist();
+    hosting::add_to_waitlist();
+}
+</code></pre>
+<p>When bringing in structs, enums, and other items with <code>use</code>, it’s idiomatic to specify the full path:</p>
+<pre><code class="language-rust ignore">use std::collections::HashMap;
+
+fn main() {
+    let mut map = HashMap::new();
+    map.insert(1, 2);
+}
+</code></pre>
+<h3><a class="header" href="#providing-new-names-with-the-as-keyword" id="providing-new-names-with-the-as-keyword">Providing New Names with the <code>as</code> Keyword</a></h3>
+<pre><code class="language-rust ignore">use std::fmt::Result;
+use std::io::Result as IoResult;
+
+fn function1() -&gt; Result {
+    // --snip--
+}
+
+fn function2() -&gt; IoResult&lt;()&gt; {
+    // --snip--
+}
+</code></pre>
+<h3><a class="header" href="#re-exporting-names-with-pub-use" id="re-exporting-names-with-pub-use">Re-exporting Names with <code>pub use</code></a></h3>
+<pre><code class="language-rust ignore">mod front_of_house {
+    pub mod hosting {
+        pub fn add_to_waitlist() {}
+    }
+}
+
+pub use crate::front_of_house::hosting;
+
+pub fn eat_at_restaurant() {
+    hosting::add_to_waitlist();
+    hosting::add_to_waitlist();
+    hosting::add_to_waitlist();
+}
+</code></pre>
+<h3><a class="header" href="#nested-paths" id="nested-paths">Nested Paths</a></h3>
+<pre><code class="language-rust ignore">// --snip--
+use std::cmp::Ordering;
+use std::io;
+// --snip--
+</code></pre>
+<p>becomes:</p>
+<pre><code class="language-rust ignore">// --snip--
+use std::{cmp::Ordering, io};
+// --snip--
+</code></pre>
+<p>If items share subpath:</p>
+<pre><code class="language-rust ignore">use std::io;
+use std::io::Write;
+</code></pre>
+<p>becomes:</p>
+<pre><code class="language-rust ignore">use std::io::{self, Write};
+</code></pre>
+<h3><a class="header" href="#glob-operator" id="glob-operator">Glob Operator</a></h3>
+<pre><code class="language-rust ignore">use std::collections::*;
+</code></pre>
+<p>Glob can obfuscate what names are in scope and where a name used in your program was defined.</p>
 
                     </main>
 
