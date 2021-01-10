@@ -100,3 +100,5 @@ To change the value that the mutable reference refers to, we have to use the der
         SpreadsheetCell::Float(10.12),
     ];
 ```
+
+Using an enum plus a `match` expression means that Rust will ensure at compile time that every possible case is handled.

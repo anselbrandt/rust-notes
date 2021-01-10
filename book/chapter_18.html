@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>String - Rust Notes</title>
+        <title>Strings - Rust Notes</title>
         
         
 
@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_0.html"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">2.</strong> Guessing Game</a></li><li class="chapter-item expanded "><a href="chapter_2.html"><strong aria-hidden="true">3.</strong> Variables and Mutability</a></li><li class="chapter-item expanded "><a href="chapter_3.html"><strong aria-hidden="true">4.</strong> Types</a></li><li class="chapter-item expanded "><a href="chapter_4.html"><strong aria-hidden="true">5.</strong> Functions</a></li><li class="chapter-item expanded "><a href="chapter_5.html"><strong aria-hidden="true">6.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="chapter_6.html"><strong aria-hidden="true">7.</strong> Ownership</a></li><li class="chapter-item expanded "><a href="chapter_7.html"><strong aria-hidden="true">8.</strong> References and Borrowing</a></li><li class="chapter-item expanded "><a href="chapter_8.html"><strong aria-hidden="true">9.</strong> Slice Type</a></li><li class="chapter-item expanded "><a href="chapter_9.html"><strong aria-hidden="true">10.</strong> Structs</a></li><li class="chapter-item expanded "><a href="chapter_10.html"><strong aria-hidden="true">11.</strong> Methods</a></li><li class="chapter-item expanded "><a href="chapter_11.html"><strong aria-hidden="true">12.</strong> Enums</a></li><li class="chapter-item expanded "><a href="chapter_12.html"><strong aria-hidden="true">13.</strong> match</a></li><li class="chapter-item expanded "><a href="chapter_13.html"><strong aria-hidden="true">14.</strong> if let</a></li><li class="chapter-item expanded "><a href="chapter_14.html"><strong aria-hidden="true">15.</strong> Packages, Crates and Modules</a></li><li class="chapter-item expanded "><a href="chapter_15.html"><strong aria-hidden="true">16.</strong> use</a></li><li class="chapter-item expanded "><a href="chapter_16.html"><strong aria-hidden="true">17.</strong> Modules</a></li><li class="chapter-item expanded "><a href="chapter_17.html"><strong aria-hidden="true">18.</strong> Vector</a></li><li class="chapter-item expanded "><a href="chapter_18.html" class="active"><strong aria-hidden="true">19.</strong> String</a></li><li class="chapter-item expanded "><a href="chapter_19.html"><strong aria-hidden="true">20.</strong> Hashmap</a></li><li class="chapter-item expanded "><a href="chapter_20.html"><strong aria-hidden="true">21.</strong> Chapter 20</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_0.html"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">2.</strong> Guessing Game</a></li><li class="chapter-item expanded "><a href="chapter_2.html"><strong aria-hidden="true">3.</strong> Variables and Mutability</a></li><li class="chapter-item expanded "><a href="chapter_3.html"><strong aria-hidden="true">4.</strong> Types</a></li><li class="chapter-item expanded "><a href="chapter_4.html"><strong aria-hidden="true">5.</strong> Functions</a></li><li class="chapter-item expanded "><a href="chapter_5.html"><strong aria-hidden="true">6.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="chapter_6.html"><strong aria-hidden="true">7.</strong> Ownership</a></li><li class="chapter-item expanded "><a href="chapter_7.html"><strong aria-hidden="true">8.</strong> References and Borrowing</a></li><li class="chapter-item expanded "><a href="chapter_8.html"><strong aria-hidden="true">9.</strong> Slice Type</a></li><li class="chapter-item expanded "><a href="chapter_9.html"><strong aria-hidden="true">10.</strong> Structs</a></li><li class="chapter-item expanded "><a href="chapter_10.html"><strong aria-hidden="true">11.</strong> Methods</a></li><li class="chapter-item expanded "><a href="chapter_11.html"><strong aria-hidden="true">12.</strong> Enums</a></li><li class="chapter-item expanded "><a href="chapter_12.html"><strong aria-hidden="true">13.</strong> match</a></li><li class="chapter-item expanded "><a href="chapter_13.html"><strong aria-hidden="true">14.</strong> if let</a></li><li class="chapter-item expanded "><a href="chapter_14.html"><strong aria-hidden="true">15.</strong> Packages, Crates and Modules</a></li><li class="chapter-item expanded "><a href="chapter_15.html"><strong aria-hidden="true">16.</strong> use</a></li><li class="chapter-item expanded "><a href="chapter_16.html"><strong aria-hidden="true">17.</strong> Modules</a></li><li class="chapter-item expanded "><a href="chapter_17.html"><strong aria-hidden="true">18.</strong> Vector</a></li><li class="chapter-item expanded "><a href="chapter_18.html" class="active"><strong aria-hidden="true">19.</strong> Strings</a></li><li class="chapter-item expanded "><a href="chapter_19.html"><strong aria-hidden="true">20.</strong> Hashmap</a></li><li class="chapter-item expanded "><a href="chapter_20.html"><strong aria-hidden="true">21.</strong> Chapter 20</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -163,7 +163,74 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h2><a class="header" href="#string" id="string"><code>string</code></a></h2>
+                        <h2><a class="header" href="#strings" id="strings">Strings</a></h2>
+<p>String slices <code>str</code>, in the core language, usually used in borrowed form <code>&amp;str</code>, are references to UTF-8 encoded string data.</p>
+<p>String literals, stored in the binary, are string slices.</p>
+<p>The <code>String</code> type, from the standard library, is a growable, mutable, owned UTF-8 encoded string type.</p>
+<p>The standard library also includes <code>OsString</code>, <code>OsStr</code>, <code>CString</code> and <code>CStr</code>.</p>
+<h3><a class="header" href="#creating-a-new-string" id="creating-a-new-string">Creating a New String</a></h3>
+<pre><code class="language-rust ignore">    let mut s = String::new();
+</code></pre>
+<h4><a class="header" href="#creating-a-string-from-a-string-literal" id="creating-a-string-from-a-string-literal">Creating a <code>String</code> from a string literal</a></h4>
+<pre><code class="language-rust ignore">    let data = &quot;initial contents&quot;;
+
+    let s = data.to_string();
+
+    // the method also works on a literal directly:
+    let s = &quot;initial contents&quot;.to_string();
+</code></pre>
+<pre><code class="language-rust ignore">    let hello = String::from(&quot;Hello&quot;);
+    let hello = String::from(&quot;こんにちは&quot;);
+    let hello = String::from(&quot;你好&quot;);
+</code></pre>
+<h3><a class="header" href="#updating-a-string" id="updating-a-string">Updating a String</a></h3>
+<pre><code class="language-rust ignore">    let mut s1 = String::from(&quot;foo&quot;);
+    let s2 = &quot;bar&quot;;
+    s1.push_str(s2);
+    println!(&quot;s2 is {}&quot;, s2);
+</code></pre>
+<p><code>push_str</code> takes a string slice and does not assume ownership of the parameter.</p>
+<pre><code class="language-rust ignore">    let mut s = String::from(&quot;lo&quot;);
+    s.push('l');
+</code></pre>
+<p><code>push</code> takes a single character</p>
+<h3><a class="header" href="#concatenation-with-the--operator-or-the-format-macro" id="concatenation-with-the--operator-or-the-format-macro">Concatenation with the <code>+</code> Operator or the <code>format!</code> Macro</a></h3>
+<pre><code class="language-rust ignore">    let s1 = String::from(&quot;Hello, &quot;);
+    let s2 = String::from(&quot;world!&quot;);
+    let s3 = s1 + &amp;s2; // note s1 has been moved here and can no longer be used
+</code></pre>
+<p>The <code>+</code> operator requires a <em>reference</em> to a <code>str</code> as the second parameter because the function signature for <code>add</code> looks like this:</p>
+<pre><code class="language-rust ignore">fn add(self, s: &amp;str) -&gt; String {
+</code></pre>
+<p>Event though <code>s2</code> is a <code>String</code> Rust can <em>coerce</em> <code>&amp;String</code> into a <code>&amp;str</code>. When calling <code>add</code>, Rust uses a <em>deref coercion</em> to turn <code>&amp;s2</code> into <code>&amp;s2[..]</code>.</p>
+<p>For more complicated string combining, we can use the <code>format!</code> macro:</p>
+<pre><code class="language-rust ignore">    let s1 = String::from(&quot;tic&quot;);
+    let s2 = String::from(&quot;tac&quot;);
+    let s3 = String::from(&quot;toe&quot;);
+
+    let s = format!(&quot;{}-{}-{}&quot;, s1, s2, s3);
+</code></pre>
+<p><code>format!</code> does not take ownership of any parameters.</p>
+<h3><a class="header" href="#indexing-into-strings" id="indexing-into-strings">Indexing into Strings</a></h3>
+<p>Because <code>String</code> is a wrapper over a <code>Vec&lt;u8&gt;</code> you cannot access individual characters by referencing them by index as UTF-8 characters may be 1 or more bytes.</p>
+<h3><a class="header" href="#slicing-strings" id="slicing-strings">Slicing Strings</a></h3>
+<p>If it is necessary to use indices to create string slices, a range <code>[]</code> must be specified:</p>
+<pre><code class="language-rust ignore">let hello = &quot;Здравствуйте&quot;;
+
+let s = &amp;hello[0..4];
+</code></pre>
+<p>*If the range does not line up with a character boundary, the program will panic.</p>
+<h3><a class="header" href="#iterating-over-strings" id="iterating-over-strings">Iterating Over Strings</a></h3>
+<p><code>char</code></p>
+<pre><code class="language-rust ignore">for c in &quot;नमस्ते&quot;.chars() {
+    println!(&quot;{}&quot;, c);
+}
+</code></pre>
+<p><code>bytes</code></p>
+<pre><code class="language-rust ignore">for b in &quot;नमस्ते&quot;.bytes() {
+    println!(&quot;{}&quot;, b);
+}
+</code></pre>
 
                     </main>
 

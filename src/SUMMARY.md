@@ -18,6 +18,6 @@
 - [use](./chapter_15.md)
 - [Modules](./chapter_16.md)
 - [Vector](./chapter_17.md)
-- [String](./chapter_18.md)
+- [Strings](./chapter_18.md)
 - [Hashmap](./chapter_19.md)
 - [Chapter 20](./chapter_20.md)
